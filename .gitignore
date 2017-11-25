@@ -1,0 +1,5 @@
+build
+node_modules
+
+#Sublime Text 3
+*.sublime-workspace
