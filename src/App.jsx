@@ -1,7 +1,8 @@
 import React from 'react';
+import HighlightList from './highlights/HighlightList';
 
-const App = () => {
-	return <div>Application</div>;
-};
+const App = () => (
+	<HighlightList/>
+	);
 
 export default App;
