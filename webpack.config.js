@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -13,9 +14,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build/*.*']),
     new HtmlWebpackPlugin({
-      title: 'My title',
+      title: 'My Football',
       template: 'src/index.html'
-    })
+    }),
+    new ExtractTextPlugin('style.css')
   ],
 
   module: {
@@ -23,6 +25,12 @@ module.exports = {
       test: /\.jsx?/,
       exclude: /node_modules/,
       use: 'babel-loader'
+    }, {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader']
+      })
     }]
   },
 

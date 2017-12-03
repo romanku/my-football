@@ -1,8 +1,8 @@
 import React from 'react';
-import HighlightList from './highlights/HighlightList';
+import EventList from './event/EventList';
 
 const App = () => (
-	<HighlightList/>
+	<EventList/>
 	);
 
 export default App;
