@@ -3,20 +3,16 @@ import EventList from './event/EventList';
 
 import {getFixtures} from './api/ApiService';
 
-class App extends React.Component {
-	constructor(props){
-		super();
-		this.state = {events: []}
-	}
+import {updateEvents} from './event/eventAction';
 
-	componentDidMount() {
-    	getFixtures((data) => {
-			this.setState({events: data});
-		});
-  	}
+const App = ({store})  => {
+	const events = store.getState().events;
 
-	render(){
-		return <EventList events={this.state.events}/>
-	}
+	getFixtures((data) => {
+		const action = updateEvents(data);
+		store.dispatch(action);
+	})
+	return (<EventList events={events}/>);
 }
+	
 export default App;

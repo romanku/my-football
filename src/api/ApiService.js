@@ -9,7 +9,7 @@ export async function getFixtures(onSuccess) {
   try {
     const response = await fetch(URL, fetchOptions);
     const data = await response.json();
-    onSuccess(getEvents(data.fixtures));
+    onSuccess(getEvents(data ? data.fixtures : []));
   }
   catch (err) {
     console.log('fetch failed', err);

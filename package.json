@@ -1,26 +1,15 @@
 {
-  "name": "react-template",
+  "name": "my-football",
   "version": "1.0.0",
-  "description": "Bootstrap for react application",
-  "main": "main.js",
+  "description": "My football application",
+  "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --host 192.168.1.103",
+    "start": "webpack-dev-server --open",
     "build": "webpack",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/romanku/react-template.git"
-  },
-  "keywords": [
-    "React"
-  ],
   "author": "Roman Kulakov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/romanku/react-template/issues"
-  },
-  "homepage": "https://github.com/romanku/react-template#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
@@ -41,14 +30,16 @@
   },
   "dependencies": {
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "redux": "^3.7.2"
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js"
     },
-    "setupFiles": ["<rootDir>/src/__polyfills__/shim.js"]
+    "setupFiles": [
+      "<rootDir>/src/__polyfills__/shim.js"
+    ]
   }
 }
