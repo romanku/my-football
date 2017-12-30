@@ -1,42 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import EventList from './EventList';
-import { getEvents } from '../api/ApiService';
-import { updateEvents } from './eventAction';
+import { fetchEvents } from './eventAction';
 
-class EventListContainer extends React.Component {
+class EventListContainer extends Component {
 	componentDidMount() {
-		const { store } = this.context;
-
-		this.unsubscribe = store.subscribe(() => {
-			this.forceUpdate();
-		});
-
-		getEvents((data) => {
-			const action = updateEvents(data);
-			store.dispatch(action);
-		});
-	}
-
-	componentWillUnmount() {
-		this.unsubscribe();
+		const { dispatch } = this.props;
+		dispatch(fetchEvents());
 	}
 
 	render() {
-		const { store } = this.context;
-		const state = store.getState();
-		const events = state.events;
+		const { isLoading, events } = this.props;
 
-		if (events.length === 0) {
+		if (isLoading) {
+			return <div>Loading...</div>;
+		} else if (events.length === 0) {
 			return <div>No events</div>;
 		}
-		return <EventList events={state.events} />;
+		return <EventList events={events} />;
 	}
 }
 
-EventListContainer.contextTypes = {
-	store: PropTypes.object
+EventListContainer.propTypes = {
+	isLoading: PropTypes.bool.isRequired,
+	events: PropTypes.array.isRequired
 };
 
-export default EventListContainer;
+const mapStateToProps = (state) => {
+	return {
+		isLoading: state.eventsIsLoading,
+		events: state.events
+	};
+};
+
+export default connect(mapStateToProps)(EventListContainer);
