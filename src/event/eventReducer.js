@@ -7,4 +7,4 @@ export default (state = [], actions) => {
 		default:
 			return state;
 	}
-}
+};
