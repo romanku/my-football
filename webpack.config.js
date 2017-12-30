@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
@@ -21,30 +21,36 @@ module.exports = {
   ],
 
   module: {
-    rules: [{
-      test: /\.jsx?/,
-      exclude: /node_modules/,
-      use: 'babel-loader'
-    }, {
-      test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', {
-          loader: 'sass-loader',
-          options: {
-            data: '@import "globals";',
-            includePaths: [path.resolve(__dirname, "./src/styles")]
-          }
-        }]
-      })
-    }]
+    rules: [
+      {
+        test: /\.jsx?/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                data: '@import "globals";',
+                includePaths: [path.resolve(__dirname, './src/styles')]
+              }
+            }
+          ]
+        })
+      }
+    ]
   },
 
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: ['.js', '.jsx']
   },
 
   devServer: {
     contentBase: 'build'
-  },
+  }
 };
