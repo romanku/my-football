@@ -1,10 +1,6 @@
 import React from 'react';
-import EventListContainer from './event/EventListContainer';
+import CompetitionListContainer from './competition/CompetitionListContainer';
 
-const App = () => (
-	<div>
-		<EventListContainer />
-	</div>
-);
+const App = () => <CompetitionListContainer />;
 
 export default App;

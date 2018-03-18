@@ -1,4 +1,7 @@
 import { combineReducers } from 'redux';
-import { events, eventsIsLoading } from './event/eventReducer';
+import {
+	competitions,
+	competitionsIsLoading
+} from './competition/competitionReducer';
 
-export default combineReducers({ events, eventsIsLoading });
+export default combineReducers({ competitions, competitionsIsLoading });
