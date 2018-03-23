@@ -6,7 +6,7 @@ import './Competition.scss';
 const Competition = ({ competition }) => {
 	return (
 		<div className="competition">
-			<div className="competition-title">{competition.id}</div>
+			<div className="competition-title">{`${competition.country} ${competition.caption}`}</div>
 			<EventList events={competition.events} />
 		</div>
 	);
