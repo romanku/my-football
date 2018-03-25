@@ -1,8 +1,8 @@
 import leagueMap from '../maps/leagueMap';
 
 const url = {
-  COMPETITIONS: 'http://api.football-data.org/v1/competitions',
-  FIXTURES: 'http://api.football-data.org/v1/fixtures'
+  COMPETITIONS: 'https://api.football-data.org/v1/competitions',
+  FIXTURES: 'https://api.football-data.org/v1/fixtures'
 };
 
 const fetchOptions = {

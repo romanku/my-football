@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "My football application",
   "main": "index.js",
+  "homepage": "https://romanku.github.io/my-football/",
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "jest"
   },
   "author": "Roman Kulakov",
@@ -20,6 +23,7 @@
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
     "node-sass": "^4.7.2",
@@ -39,11 +43,10 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/src/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js"
     },
-    "setupFiles": [
-      "<rootDir>/src/__polyfills__/shim.js"
-    ]
+    "setupFiles": ["<rootDir>/src/__polyfills__/shim.js"]
   }
 }
