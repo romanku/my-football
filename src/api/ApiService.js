@@ -34,7 +34,7 @@ export async function getCompetitions(onSuccess) {
 
       parsedCompetition.caption = competition.caption;
       parsedCompetition.league = competition.league;
-      parsedCompetition.country = leagueMap[competition.league] || 'Other';
+      parsedCompetition.country = (leagueMap[competition.league] && leagueMap[competition.league].country) || 'Other';
     }
 
     console.log(parsedData);
