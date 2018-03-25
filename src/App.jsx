@@ -1,7 +1,6 @@
 import React from 'react';
+import CompetitionListContainer from './competition/CompetitionListContainer';
 
-const App = () => {
-	return <div>Application</div>;
-};
+const App = () => <CompetitionListContainer />;
 
 export default App;
