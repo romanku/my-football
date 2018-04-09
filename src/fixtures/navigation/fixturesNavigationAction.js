@@ -1,5 +1,5 @@
-import * as types from './navigationActionType';
-import { fetchCompetitions } from '../../competition/competitionAction';
+import * as types from './fixturesNavigationActionType';
+import { fetchCompetitions } from '../competition/fixtureCompetitionAction';
 
 export const changeSelectedDate = (selectedDate) => (dispatch) => {
 	dispatch(setSelectedDate(selectedDate));

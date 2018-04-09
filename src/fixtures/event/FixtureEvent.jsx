@@ -1,12 +1,12 @@
 import React from 'react';
-import './Event.scss';
+import './FixtureEvent.scss';
 
 function formatDate(stringDate) {
 	const date = new Date(stringDate);
 	return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
-const Event = (prop) => (
+const FixtureEvent = (prop) => (
 	<div className="event">
 		<div className="event-start">{formatDate(prop.event.date)}</div>
 		<div className="event-team home">{prop.event.homeTeamName}</div>
@@ -15,4 +15,4 @@ const Event = (prop) => (
 	</div>
 );
 
-export default Event;
+export default FixtureEvent;

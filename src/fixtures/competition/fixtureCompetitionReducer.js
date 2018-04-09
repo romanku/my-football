@@ -1,4 +1,4 @@
-import * as types from './competitionActionType';
+import * as types from './fixtureCompetitionActionType';
 
 export const competitionsIsLoading = (state = false, actions) => {
 	switch (actions.type) {

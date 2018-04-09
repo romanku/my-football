@@ -1,11 +1,11 @@
 import React from 'react';
-import CompetitionListContainer from './competition/CompetitionListContainer';
+import FixtureCompetitionListContainer from './fixtures/competition/FixtureCompetitionListContainer';
 import FixturesNavigationBarContainer from './fixtures/navigation/FixturesNavigationBarContainer';
 
 const App = () => (
 	<div>
 		<FixturesNavigationBarContainer />
-		<CompetitionListContainer />
+		<FixtureCompetitionListContainer />
 	</div>
 );
 
