@@ -1,5 +1,5 @@
-import * as types from './competitionActionType';
-import { getCompetitions } from '../api/ApiService';
+import * as types from './fixtureCompetitionActionType';
+import { getCompetitions } from '../../api/ApiService';
 
 export const fetchCompetitions = (selectedData) => (dispatch) => {
 	dispatch(competitionsIsLoading(true));

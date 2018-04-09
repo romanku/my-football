@@ -1,4 +1,4 @@
-import * as types from './navigationActionType';
+import * as types from './fixturesNavigationActionType';
 import moment from 'moment';
 
 export const selectedDate = (state = moment(), actions) => {

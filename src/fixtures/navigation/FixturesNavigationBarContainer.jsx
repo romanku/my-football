@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { changeSelectedDate } from './navigationAction';
+import { changeSelectedDate } from './fixturesNavigationAction';
 
 import FixturesNavigationBar from './FixturesNavigationBar';
 
