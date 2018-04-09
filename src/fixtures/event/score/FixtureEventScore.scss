@@ -1,0 +1,15 @@
+.fixture-event-score {
+	display: flex;
+	align-items: center;
+	width: 40px;
+	height: 18px;
+	border: #afafaf 1px solid;
+	font-size: 11px;
+	font-weight: bold;
+	padding-top: 1px;
+
+	&-item {
+		width: 20px;
+		text-align: center;
+	}
+}

@@ -66,7 +66,12 @@ function parseEvents(fixtures) {
       competitionId: fixture.competitionId,
       date: fixture.date,
       homeTeamName: fixture.homeTeamName,
-      awayTeamName: fixture.awayTeamName
+      awayTeamName: fixture.awayTeamName,
+      score: {
+        home: fixture.result.goalsHomeTeam,
+        away: fixture.result.goalsAwayTeam
+      },
+      status: fixture.status
     }))
     .reduce((accumulator, feature) => {
       const competitionId = feature.competitionId;
