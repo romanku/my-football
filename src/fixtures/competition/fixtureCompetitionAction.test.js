@@ -1,5 +1,5 @@
-import * as actions from './competitionAction';
-import * as types from './competitionActionType';
+import * as actions from './fixtureCompetitionAction';
+import * as types from './fixtureCompetitionActionType';
 
 describe('Actions', () => {
 	it('should create competitions loading action', () => {
@@ -10,9 +10,7 @@ describe('Actions', () => {
 			isLoading
 		};
 
-		const competitionsIsLoadingAction = actions.competitionsIsLoading(
-			isLoading
-		);
+		const competitionsIsLoadingAction = actions.competitionsIsLoading(isLoading);
 
 		expect(competitionsIsLoadingAction).toEqual(expectedAction);
 	});
@@ -25,9 +23,7 @@ describe('Actions', () => {
 			competitions
 		};
 
-		const updateCompetitionsAction = actions.updateCompetitions(
-			competitions
-		);
+		const updateCompetitionsAction = actions.updateCompetitions(competitions);
 
 		expect(updateCompetitionsAction).toEqual(expectedAction);
 	});

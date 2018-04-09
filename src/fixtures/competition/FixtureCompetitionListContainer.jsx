@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CompetitionList from './CompetitionList';
-import { fetchCompetitions } from './competitionAction';
+import FixtureCompetitionList from './FixtureCompetitionList';
+import { fetchCompetitions } from './fixtureCompetitionAction';
 
-class CompetitionListContainer extends Component {
+class FixtureCompetitionListContainer extends Component {
 	componentDidMount() {
 		this.props.fetchCompetitions();
 	}
@@ -17,11 +17,11 @@ class CompetitionListContainer extends Component {
 		} else if (competitions.length === 0) {
 			return <div>No events</div>;
 		}
-		return <CompetitionList competitions={competitions} />;
+		return <FixtureCompetitionList competitions={competitions} />;
 	}
 }
 
-CompetitionListContainer.propTypes = {
+FixtureCompetitionListContainer.propTypes = {
 	isLoading: PropTypes.bool.isRequired,
 	competitions: PropTypes.array.isRequired
 };
@@ -39,6 +39,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-	CompetitionListContainer
-);
+export default connect(mapStateToProps, mapDispatchToProps)(FixtureCompetitionListContainer);
