@@ -34,6 +34,8 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "D": "^1.0.0",
+    "moment": "^2.22.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -43,10 +45,11 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js"
     },
-    "setupFiles": ["<rootDir>/src/__polyfills__/shim.js"]
+    "setupFiles": [
+      "<rootDir>/src/__polyfills__/shim.js"
+    ]
   }
 }

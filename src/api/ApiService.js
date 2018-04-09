@@ -13,32 +13,47 @@ const fetchOptions = {
   }
 };
 
-export async function getCompetitions(onSuccess) {
+const competitionMap = {};
+
+export async function getCompetitions(selectedDate, onSuccess) {
   try {
-    const fixturesResponse = await fetch(url.FIXTURES, fetchOptions);
+    const fixturesParams = getRequestParams(selectedDate);
+    const fixturesUrl = `${url.FIXTURES}${fixturesParams}`;
+    const fixturesResponse = await fetch(fixturesUrl, fetchOptions);
     const fixturesData = await fixturesResponse.json();
 
     const parsedData = parseEvents(fixturesData ? fixturesData.fixtures : []);
 
-    const competitionPromises = parsedData.map(async (competition) => {
-      const response = await fetch(`${url.COMPETITIONS}/${competition.id}`, fetchOptions);
-      return response.json();
-    });
+    const competitionPromises = parsedData
+      .filter((competition) => !competitionMap[competition.id])
+      .map(async (competition) => {
+        const response = await fetch(`${url.COMPETITIONS}/${competition.id}`, fetchOptions);
+        return response.json();
+      });
 
     for (const competitionPromise of competitionPromises) {
       const competition = await competitionPromise;
-
-      const parsedCompetition = parsedData.find((comp) => {
-        return comp.id === competition.id;
-      });
-
-      parsedCompetition.caption = competition.caption;
-      parsedCompetition.league = competition.league;
-      parsedCompetition.country = (leagueMap[competition.league] && leagueMap[competition.league].country) || 'Other';
+      competitionMap[competition.id] = competition;
     }
 
-    console.log(parsedData);
-    onSuccess(parsedData);
+    const parsedDateWithCompetitions = parsedData.map((competition) => {
+      const competitionExt = Object.create(competition);
+
+      competitionExt.caption = competitionMap[competition.id].caption;
+      competitionExt.league = competitionMap[competition.id].league;
+      competitionExt.country =
+        (leagueMap[competitionExt.league] && leagueMap[competitionExt.league].country) || 'Other';
+
+      return competitionExt;
+    });
+
+    const sortedParsedData = parsedDateWithCompetitions.sort((a, b) => {
+      const aPriority = leagueMap[a.league] ? leagueMap[a.league].priority : 1000;
+      const bPriority = leagueMap[b.league] ? leagueMap[b.league].priority : 1000;
+      return aPriority - bPriority;
+    });
+
+    onSuccess(sortedParsedData);
   } catch (err) {
     console.log('fetch failed', err);
   }
@@ -76,4 +91,13 @@ function sortEvents(events) {
   const sortedEvents = [...events];
   sortedEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
   return sortedEvents;
+}
+
+function getRequestParams(date) {
+  if (date) {
+    const fixturesDate = date.format('YYYY-MM-DD');
+    return `?timeFrameStart=${fixturesDate}&timeFrameEnd=${fixturesDate}`;
+  }
+
+  return '?timeFrame=n1';
 }

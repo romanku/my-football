@@ -7,6 +7,6 @@ export default {
 	NETHERLANDS: 'Netherlands',
 	PORTUGAL: 'Portugal',
 	GREECE: 'Greece',
-	EUROPE: 'Erope',
+	EUROPE: 'Europe',
 	WORLD: 'World'
 };
