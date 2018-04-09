@@ -1,4 +1,6 @@
 import React from 'react';
+import FixtureEventScore from './score/FixtureEventScore';
+
 import './FixtureEvent.scss';
 
 function formatDate(stringDate) {
@@ -6,13 +8,17 @@ function formatDate(stringDate) {
 	return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
-const FixtureEvent = (prop) => (
-	<div className="event">
-		<div className="event-start">{formatDate(prop.event.date)}</div>
-		<div className="event-team home">{prop.event.homeTeamName}</div>
-		<div className="event-score" />
-		<div className="event-team away">{prop.event.awayTeamName}</div>
-	</div>
-);
+const FixtureEvent = (prop) => {
+	const { date, homeTeamName, awayTeamName, score, status } = prop.event;
+
+	return (
+		<div className="event">
+			<div className="event-start">{formatDate(date)}</div>
+			<div className="event-team home">{homeTeamName}</div>
+			<FixtureEventScore score={score} status={status} />
+			<div className="event-team away">{awayTeamName}</div>
+		</div>
+	);
+};
 
 export default FixtureEvent;
