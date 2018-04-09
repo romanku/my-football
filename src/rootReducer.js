@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import {
-	competitions,
-	competitionsIsLoading
-} from './competition/competitionReducer';
+import { competitions, competitionsIsLoading } from './competition/competitionReducer';
 
-export default combineReducers({ competitions, competitionsIsLoading });
+import { selectedDate } from './fixtures/navigation/fixturesNavigationBarReducer';
+
+export default combineReducers({ competitions, competitionsIsLoading, selectedDate });

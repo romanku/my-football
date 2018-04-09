@@ -1,10 +1,10 @@
 import * as types from './competitionActionType';
 import { getCompetitions } from '../api/ApiService';
 
-export const fetchCompetitions = () => (dispatch) => {
+export const fetchCompetitions = (selectedData) => (dispatch) => {
 	dispatch(competitionsIsLoading(true));
 
-	getCompetitions((data) => {
+	getCompetitions(selectedData, (data) => {
 		dispatch(competitionsIsLoading(false));
 		dispatch(updateCompetitions(data));
 	});

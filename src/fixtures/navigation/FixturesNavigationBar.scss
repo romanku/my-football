@@ -1,0 +1,35 @@
+.fixtures-navigation-bar {
+	display: flex;
+	height: 40px;
+	align-items: center;
+	color: $colorGrey;
+	border-bottom: $colorGrey 1px solid;
+
+	&-title {
+		font-weight: bold;
+	}
+
+	&-date {
+		margin-left: 5px;
+		flex-grow: 1;
+	}
+
+	&-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		background-color: $colorGrey;
+		color: #ffffff;
+		margin: 5px;
+		cursor: pointer;
+		&.backward:after {
+			content: '\25c4';
+		}
+
+		&.forward:after {
+			content: '\25ba';
+		}
+	}
+}
