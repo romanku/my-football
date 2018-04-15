@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import App from './App';
 import './index.scss';
-import './assets/images/favicon.ico';
+import '../assets/images/favicon.ico';
 
 const composeEnhancers =
 	process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

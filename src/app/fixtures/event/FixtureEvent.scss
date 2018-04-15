@@ -10,10 +10,13 @@
     padding-left: 10px;
     padding-right: 10px;
 
-    &-start {
+    &-status {
         width: 60px;
         margin-right: 5px;
-        text-align: right;
+        text-align: center;
+        &.inplay {
+            color: #ec6316;
+        }
     }
 
     &-team {
