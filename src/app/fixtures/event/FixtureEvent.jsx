@@ -1,5 +1,7 @@
 import React from 'react';
 import FixtureEventScore from './score/FixtureEventScore';
+import matchStatus from '../../constants/matchStatus';
+import moment from 'moment';
 
 import './FixtureEvent.scss';
 
@@ -8,12 +10,27 @@ function formatDate(stringDate) {
 	return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
+const getStatus = (status, date) => {
+	switch (status) {
+		case matchStatus.TIMED:
+			return moment(date).format('HH:mm');
+		case matchStatus.IN_PLAY:
+			return 'Inplay';
+		case matchStatus.FINISHED:
+			return 'Finished';
+		default:
+			return '';
+	}
+};
+
 const FixtureEvent = (prop) => {
 	const { date, homeTeamName, awayTeamName, score, status } = prop.event;
 
 	return (
 		<div className="event">
-			<div className="event-start">{formatDate(date)}</div>
+			<div className={`event-status ${status === matchStatus.IN_PLAY ? 'inplay' : ''}`}>
+				{getStatus(status, date)}
+			</div>
 			<div className="event-team home">{homeTeamName}</div>
 			<FixtureEventScore score={score} status={status} />
 			<div className="event-team away">{awayTeamName}</div>

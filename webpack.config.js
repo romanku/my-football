@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/app/index.jsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
@@ -15,7 +15,7 @@ module.exports = {
     new CleanWebpackPlugin(['build/*.*']),
     new HtmlWebpackPlugin({
       title: 'My Football',
-      template: 'src/index.html'
+      template: 'src/app/index.html'
     }),
     new ExtractTextPlugin('style.css')
   ],
@@ -41,7 +41,7 @@ module.exports = {
               loader: 'sass-loader',
               options: {
                 data: '@import "globals";',
-                includePaths: [path.resolve(__dirname, './src/styles')]
+                includePaths: [path.resolve(__dirname, './src/app/styles')]
               }
             }
           ]
