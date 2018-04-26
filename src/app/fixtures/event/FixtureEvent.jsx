@@ -18,6 +18,8 @@ const getStatus = (status, date) => {
 			return 'Inplay';
 		case matchStatus.FINISHED:
 			return 'Finished';
+		case matchStatus.POSTPONED:
+			return 'Postponed';
 		default:
 			return '';
 	}
