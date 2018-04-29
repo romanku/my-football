@@ -40,7 +40,7 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                data: '@import "globals";',
+                data: '@import "globals.scss";',
                 includePaths: [path.resolve(__dirname, './src/app/styles')]
               }
             }
