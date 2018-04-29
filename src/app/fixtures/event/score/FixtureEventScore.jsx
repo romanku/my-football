@@ -4,8 +4,10 @@ import matchStatus from '../../../constants/matchStatus';
 import './FixtureEventScore.scss';
 
 const FixtureEventScore = (prop) => {
-	if (prop.status === matchStatus.TIMED) {
-		return <span className="fixture-event-vs">vs</span>;
+	const { status } = prop;
+
+	if (status === matchStatus.TIMED || status === matchStatus.POSTPONED) {
+		return <div className="fixture-event-vs">vs</div>;
 	}
 
 	const { home, away } = prop.score;

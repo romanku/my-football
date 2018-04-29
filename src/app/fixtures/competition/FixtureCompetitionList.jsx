@@ -4,7 +4,7 @@ import FixtureCompetition from './FixtureCompetition';
 
 const FixtureCompetitionList = ({ competitions }) => {
 	return (
-		<div>
+		<div className="competition-list">
 			{competitions.map((competition) => <FixtureCompetition key={competition.id} competition={competition} />)}
 		</div>
 	);
