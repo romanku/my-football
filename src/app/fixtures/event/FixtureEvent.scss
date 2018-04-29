@@ -1,7 +1,7 @@
 .event {
     display: flex;
     align-items: center;
-    height: 40px;
+    min-height: 40px;
     font-size: 14px;
     color: #333333;
     border-bottom-style: solid;
@@ -11,7 +11,7 @@
     padding-right: 10px;
 
     &-status {
-        width: 60px;
+        min-width: 60px;
         margin-right: 5px;
         text-align: center;
         &.inplay {
@@ -21,6 +21,9 @@
 
     &-team {
         width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
         &.home {
             text-align: right;
             margin-right: 5px;

@@ -7,7 +7,7 @@ const FixtureEventScore = (prop) => {
 	const { status } = prop;
 
 	if (status === matchStatus.TIMED || status === matchStatus.POSTPONED) {
-		return <span className="fixture-event-vs">vs</span>;
+		return <div className="fixture-event-vs">vs</div>;
 	}
 
 	const { home, away } = prop.score;
