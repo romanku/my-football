@@ -1,5 +1,6 @@
 .fixtures-navigation-bar {
 	display: flex;
+	flex-shrink: 0;
 	height: 40px;
 	align-items: center;
 	padding: 0 $sideMargin;

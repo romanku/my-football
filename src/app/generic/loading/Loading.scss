@@ -1,0 +1,29 @@
+.loading {
+	width: 100%;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: $colorGrey;
+}
+
+.spinner {
+	width: 28px;
+	height: 28px;
+	margin-top: 4px;
+	border-width: 2px;
+	border-bottom-color: transparent;
+	border-radius: 50%;
+	border-style: solid;
+	animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

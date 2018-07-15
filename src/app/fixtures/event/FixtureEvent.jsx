@@ -13,6 +13,7 @@ function formatDate(stringDate) {
 const getStatus = (status, date) => {
 	switch (status) {
 		case matchStatus.TIMED:
+		case matchStatus.SCHEDULED:
 			return moment(date).format('HH:mm');
 		case matchStatus.IN_PLAY:
 			return 'Inplay';

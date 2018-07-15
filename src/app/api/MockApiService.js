@@ -1,102 +1,86 @@
-const fixtureOne = {
-  _links: {
-    self: {
-      href: 'http://api.football-data.org/v1/fixtures/159661'
-    },
-    competition: {
-      href: 'http://api.football-data.org/v1/competitions/446'
-    },
-    homeTeam: {
-      href: 'http://api.football-data.org/v1/teams/76'
-    },
-    awayTeam: {
-      href: 'http://api.football-data.org/v1/teams/60'
+/*Competition Example
+  
+  const competition = {
+  caption: 'Campeonato Brasileiro da Série A',
+  league: 'BSA',
+  country: 'Other',
+  id: 468,
+  events: [
+    {
+      id: 166758,
+      competitionId: 468,
+      date: '2018-07-18T22:30:00Z',
+      homeTeamName: 'Ceará',
+      awayTeamName: 'Sport Recife',
+      score: {
+        home: null,
+        away: null
+      },
+      status: 'SCHEDULED'
     }
-  },
-  date: '2017-11-25T15:00:00Z',
-  status: 'TIMED',
-  matchday: 19,
-  homeTeamName: 'Wolverhampton Wanderers FC',
-  awayTeamName: 'Bolton Wanderers FC',
-  result: {
-    goalsHomeTeam: null,
-    goalsAwayTeam: null
-  },
-  odds: null
-};
+  ]
+};*/
 
-const fixtureTwo = {
-  _links: {
-    self: {
-      href: 'http://api.football-data.org/v1/fixtures/161535'
-    },
-    competition: {
-      href: 'http://api.football-data.org/v1/competitions/450'
-    },
-    homeTeam: {
-      href: 'http://api.football-data.org/v1/teams/529'
-    },
-    awayTeam: {
-      href: 'http://api.football-data.org/v1/teams/543'
-    }
-  },
-  date: '2017-11-25T16:00:00Z',
-  status: 'TIMED',
-  matchday: 14,
-  homeTeamName: 'Stade Rennais FC',
-  awayTeamName: 'FC Nantes',
-  result: {
-    goalsHomeTeam: null,
-    goalsAwayTeam: null
-  },
-  odds: null
-};
-
-const fixtureThree = {
-  _links: {
-    self: {
-      href: 'http://api.football-data.org/v1/fixtures/164204'
-    },
-    competition: {
-      href: 'http://api.football-data.org/v1/competitions/457'
-    },
-    homeTeam: {
-      href: 'http://api.football-data.org/v1/teams/1808'
-    },
-    awayTeam: {
-      href: 'http://api.football-data.org/v1/teams/1049'
-    }
-  },
-  date: '2017-11-25T16:00:00Z',
-  status: 'TIMED',
-  matchday: 12,
-  homeTeamName: 'Portimonense S.C.',
-  awayTeamName: 'CD Tondela',
-  result: {
-    goalsHomeTeam: null,
-    goalsAwayTeam: null
-  },
-  odds: null
-};
-
-const fixtures = {
-  timeFrameStart: '2017-11-25',
-  timeFrameEnd: '2017-12-01',
-  count: 3,
-  fixtures: [fixtureOne, fixtureTwo, fixtureThree]
-};
-
-function getFixtures() {
-  return fixtures;
+export function getCompetitions(selectedDate, onSuccess, onError) {
+  setTimeout(() => {
+    onSuccess([builder.build(), builder.eventsNum(2).build()]);
+  }, 1000);
 }
 
-export function getEvents() {
-  const fixtures = getFixtures().fixtures;
-  let id = 0;
-  return fixtures.map((fixture) => ({
-    id: id++,
-    date: fixture.date,
-    homeTeamName: fixture.homeTeamName,
-    awayTeamName: fixture.awayTeamName
-  }));
+class CompetitionBuilder {
+  constructor() {
+    this.competitionIdGen = 0;
+    this.eventIdGen = 0;
+
+    this.competition = this.getInitCompetition();
+  }
+
+  eventsNum(num) {
+    let i = 0;
+
+    this.competitionIdGen++;
+
+    while (i < num) {
+      i++;
+      this.competition.events.push(this.eventFactory());
+    }
+    return this;
+  }
+
+  eventFactory() {
+    return {
+      id: this.eventIdGen++,
+      competitionId: this.competitionIdGen,
+      date: '2018-07-19T00:45:00Z',
+      homeTeamName: 'Team 1',
+      awayTeamName: 'Team 2',
+      score: {
+        home: null,
+        away: null
+      },
+      status: 'SCHEDULED'
+    };
+  }
+
+  build() {
+    if (this.competition.events.length === 0) {
+      this.eventsNum(5);
+    }
+
+    const competitionData = {
+      id: this.competitionIdGen,
+      league: `LG${this.competitionIdGen}`,
+      caption: `League ${this.competitionIdGen} ${this.competition.country}`
+    };
+
+    const returnCompetition = Object.assign(this.competition, competitionData);
+    this.competition = this.getInitCompetition();
+    return returnCompetition;
+  }
+
+  getInitCompetition() {
+    return { country: 'Other', events: [] };
+  }
 }
+
+const builder = new CompetitionBuilder();
