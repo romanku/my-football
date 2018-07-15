@@ -10,9 +10,12 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
   },
+  optimization: {
+    minimize: false
+  },
 
   plugins: [
-    new CleanWebpackPlugin(['build/*.*']),
+    new CleanWebpackPlugin(['build/*']),
     new HtmlWebpackPlugin({
       title: 'My Football',
       template: 'src/app/index.html'
@@ -46,6 +49,17 @@ module.exports = {
             }
           ]
         })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   },

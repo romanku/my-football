@@ -17,3 +17,12 @@ export const competitions = (state = [], actions) => {
 			return state;
 	}
 };
+
+export const isCompetitionsFetchError = (state = false, actions) => {
+	switch (actions.type) {
+		case types.COMPETITIONS_FETCH_ERROR:
+			return actions.isFetchError;
+		default:
+			return state;
+	}
+};
