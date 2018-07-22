@@ -1,15 +1,12 @@
-import leagueMap from '../maps/leagueMap';
-
 const url = {
-  COMPETITIONS: 'https://api.football-data.org/v1/competitions',
-  FIXTURES: 'https://api.football-data.org/v1/fixtures'
+  COMPETITIONS: 'https://api.football-data.org/v2/competitions',
+  FIXTURES: 'https://api.football-data.org/v2/matches'
 };
 
 const fetchOptions = {
   method: 'GET',
   headers: {
-    'X-Auth-Token': 'c43ce3a78a9f467594e4825df988eabc',
-    'X-Response-Control': 'minified'
+    'X-Auth-Token': 'c43ce3a78a9f467594e4825df988eabc'
   }
 };
 
@@ -22,7 +19,7 @@ export async function getCompetitions(selectedDate, onSuccess, onError) {
     const fixturesResponse = await fetch(fixturesUrl, fetchOptions);
     const fixturesData = await fixturesResponse.json();
 
-    const parsedData = parseEvents(fixturesData ? fixturesData.fixtures : []);
+    const parsedData = parseEvents(fixturesData ? fixturesData.matches : []);
 
     const competitionPromises = parsedData
       .filter((competition) => !competitionMap[competition.id])
@@ -36,24 +33,12 @@ export async function getCompetitions(selectedDate, onSuccess, onError) {
       competitionMap[competition.id] = competition;
     }
 
-    const parsedDateWithCompetitions = parsedData.map((competition) => {
-      const competitionExt = Object.create(competition);
-
-      competitionExt.caption = competitionMap[competition.id].caption;
-      competitionExt.league = competitionMap[competition.id].league;
-      competitionExt.country =
-        (leagueMap[competitionExt.league] && leagueMap[competitionExt.league].country) || 'Other';
-
-      return competitionExt;
+    parsedData.forEach((competition) => {
+      competition.caption = competitionMap[competition.id].name;
+      competition.country = competitionMap[competition.id].area.name;
     });
 
-    const sortedParsedData = parsedDateWithCompetitions.sort((a, b) => {
-      const aPriority = leagueMap[a.league] ? leagueMap[a.league].priority : 1000;
-      const bPriority = leagueMap[b.league] ? leagueMap[b.league].priority : 1000;
-      return aPriority - bPriority;
-    });
-
-    onSuccess(sortedParsedData);
+    onSuccess(parsedData);
   } catch (err) {
     onError();
   }
@@ -63,22 +48,22 @@ function parseEvents(fixtures) {
   const competitionsMap = fixtures
     .map((fixture) => ({
       id: fixture.id,
-      competitionId: fixture.competitionId,
-      date: fixture.date,
-      homeTeamName: fixture.homeTeamName,
-      awayTeamName: fixture.awayTeamName,
+      competitionId: fixture.competition.id,
+      date: fixture.utcDate,
+      homeTeamName: fixture.homeTeam.name,
+      awayTeamName: fixture.awayTeam.name,
       score: {
-        home: fixture.result.goalsHomeTeam,
-        away: fixture.result.goalsAwayTeam
+        home: fixture.score.fullTime.homeTeam,
+        away: fixture.score.fullTime.awayTeam
       },
       status: fixture.status
     }))
-    .reduce((accumulator, feature) => {
-      const competitionId = feature.competitionId;
+    .reduce((accumulator, fixture) => {
+      const competitionId = fixture.competitionId;
       if (accumulator[competitionId]) {
-        accumulator[competitionId].push(feature);
+        accumulator[competitionId].push(fixture);
       } else {
-        accumulator[competitionId] = [feature];
+        accumulator[competitionId] = [fixture];
       }
       return accumulator;
     }, {});
@@ -101,8 +86,8 @@ function sortEvents(events) {
 function getRequestParams(date) {
   if (date) {
     const fixturesDate = date.format('YYYY-MM-DD');
-    return `?timeFrameStart=${fixturesDate}&timeFrameEnd=${fixturesDate}`;
+    return `?dateFrom=${fixturesDate}&dateTo=${fixturesDate}`;
   }
 
-  return '?timeFrame=n1';
+  return '';
 }
