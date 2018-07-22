@@ -1,0 +1,181 @@
+.app-header {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  background-color: #248848; }
+  .app-header-title {
+    color: #ffffff;
+    margin-left: 10px;
+    cursor: pointer; }
+.app-footer {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  color: #aaaaaa;
+  background-color: #cccccc;
+  align-items: center;
+  justify-content: center; }
+.main-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.app-content {
+  width: 100%;
+  min-height: calc(100vh - 44px - 44px);
+  max-width: 640px;
+  display: flex;
+  flex-direction: column; }
+.event {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  font-size: 14px;
+  color: #333333;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #cccccc;
+  padding-left: 10px;
+  padding-right: 10px; }
+  .event-status {
+    min-width: 60px;
+    margin-right: 5px;
+    text-align: center; }
+    .event-status.inplay {
+      color: #ec6316; }
+  .event-team {
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    .event-team.home {
+      text-align: right;
+      margin-right: 5px; }
+    .event-team.away {
+      text-align: left;
+      margin-left: 5px; }
+  .event-score {
+    width: 40px;
+    height: 18px;
+    border: #555555 1px solid; }
+.competition-list {
+  margin: 0 10px; }
+
+.competition-title {
+  height: 40px;
+  line-height: 40px;
+  vertical-align: center;
+  color: #333333;
+  font-weight: bold;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #cccccc;
+  padding-left: 10px; }
+@font-face {
+  font-family: 'my-football-icons';
+  src: url(fonts/my-football-icons.woff2) format("woff2"), url(fonts/my-football-icons.woff) format("woff"), url(fonts/my-football-icons.ttf) format("truetype"), url(fonts/my-football-icons.svg#my-football-icon) format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.font-icon {
+  font-family: 'my-football-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.font-icon.arrow:before {
+  content: "\E900"; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html {
+  overflow-y: scroll; }
+
+body {
+  font-family: 'Roboto', sans-serif; }
+.loading {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333333; }
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  margin-top: 4px;
+  border-width: 2px;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  border-style: solid;
+  animation: rotate 1s linear infinite; }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+.information {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333; }
+.fixtures-navigation-bar {
+  display: flex;
+  flex-shrink: 0;
+  height: 40px;
+  align-items: center;
+  padding: 0 10px;
+  color: #333333;
+  border-bottom: #333333 1px solid; }
+  .fixtures-navigation-bar-title {
+    font-weight: bold; }
+  .fixtures-navigation-bar-date {
+    margin-left: 5px;
+    flex-grow: 1; }
+  .fixtures-navigation-bar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #333333;
+    color: #ffffff;
+    margin: 5px;
+    cursor: pointer; }
+    .fixtures-navigation-bar-button.font-icon {
+      font-size: 12px; }
+      .fixtures-navigation-bar-button.font-icon.backward {
+        transform: rotate(180deg); }
+.fixture-event-vs {
+  min-width: 40px;
+  text-align: center; }
+
+.fixture-event-score {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 18px;
+  border: #afafaf 1px solid;
+  font-size: 11px;
+  font-weight: bold;
+  padding-top: 1px; }
+  .fixture-event-score.inplay {
+    border-color: #ec6316; }
+  .fixture-event-score-item {
+    width: 20px;
+    text-align: center; }
