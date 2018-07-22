@@ -1,7 +1,7 @@
 import * as footballDataApi from './FootballDataApiService';
 import * as mockApi from './MockApiService';
 
-const currentService = footballDataApi;
+const currentService = mockApi;
 
 export function getCompetitions(...args) {
 	return currentService.getCompetitions(...args);

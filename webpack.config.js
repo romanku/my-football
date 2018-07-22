@@ -10,9 +10,6 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
   },
-  optimization: {
-    minimize: false
-  },
 
   plugins: [
     new CleanWebpackPlugin(['build/*']),
@@ -26,7 +23,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+        test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.wav$|\.mp3$/,
         loader: 'file-loader?name=[name].[ext]' // <-- retain original file name
       },
       {
@@ -43,7 +40,7 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                data: '@import "globals.scss";',
+                data: '@import "global-variables.scss";',
                 includePaths: [path.resolve(__dirname, './src/app/styles')]
               }
             }
