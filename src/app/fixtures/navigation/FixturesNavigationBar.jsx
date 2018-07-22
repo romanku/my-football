@@ -8,8 +8,8 @@ const FixturesNavigationBar = ({ selectedDate, onBackwardClicked, onForwardClick
 		<div className="fixtures-navigation-bar">
 			<span className="fixtures-navigation-bar-title">Fixtures</span>
 			<span className="fixtures-navigation-bar-date">{selectedDate}</span>
-			<div className="fixtures-navigation-bar-button backward" onClick={onBackwardClicked} />
-			<div className="fixtures-navigation-bar-button forward" onClick={onForwardClicked} />
+			<div className="fixtures-navigation-bar-button font-icon arrow backward" onClick={onBackwardClicked} />
+			<div className="fixtures-navigation-bar-button font-icon arrow" onClick={onForwardClicked} />
 		</div>
 	);
 };
