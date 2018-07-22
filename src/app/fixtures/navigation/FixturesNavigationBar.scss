@@ -26,12 +26,12 @@
 		color: #ffffff;
 		margin: 5px;
 		cursor: pointer;
-		&.backward:after {
-			content: '\25c4';
-		}
-
-		&.forward:after {
-			content: '\25ba';
+		
+		&.font-icon {
+			font-size: 12px; 
+			&.backward {
+				transform: rotate(180deg);
+			}
 		}
 	}
 }

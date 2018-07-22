@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import App from './App';
-import './index.scss';
+import './styles/global.scss';
 import '../assets/images/favicon.ico';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
