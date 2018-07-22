@@ -3,7 +3,9 @@ import './Header.scss';
 
 const Header = (props) => (
 	<header className="app-header">
-		<span className="app-header-title">My Football</span>
+		<span className="app-header-title" onClick={props.onHeaderClicked}>
+			My Football
+		</span>
 	</header>
 );
 
