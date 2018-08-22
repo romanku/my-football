@@ -6,3 +6,7 @@ const currentService = footballDataApi;
 export function getCompetitions(...args) {
 	return currentService.getCompetitions(...args);
 }
+
+export function getMatch(...args) {
+	return currentService.getMatch(...args);
+}

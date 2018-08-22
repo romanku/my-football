@@ -6,20 +6,27 @@ import { changeSelectedDate } from './fixturesNavigationAction';
 import FixturesNavigationBar from './FixturesNavigationBar';
 
 class FixturesNavigationBarContainer extends Component {
-	constructor() {
+	constructor({ history }) {
 		super();
+
+		this.history = history;
+
 		this.onBackwardClicked = this.onBackwardClicked.bind(this);
 		this.onForwardClicked = this.onForwardClicked.bind(this);
 	}
 
 	onBackwardClicked() {
 		const { selectedDate } = this.props;
-		this.props.changeSelectedDate(selectedDate.add(-1, 'days'));
+		const previousDate = selectedDate.add(-1, 'days');
+		this.history.push(`/fixtures/date/${previousDate.format('YYYYMMDD')}`);
+		this.props.changeSelectedDate(previousDate);
 	}
 
 	onForwardClicked() {
 		const { selectedDate } = this.props;
-		this.props.changeSelectedDate(selectedDate.add(1, 'days'));
+		const nextDate = selectedDate.add(1, 'days');
+		this.history.push(`/fixtures/date/${nextDate.format('YYYYMMDD')}`);
+		this.props.changeSelectedDate(nextDate);
 	}
 
 	render() {

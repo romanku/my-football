@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FixtureCompetitionList from './FixtureCompetitionList';
-import { fetchCompetitions } from './fixtureCompetitionAction';
+import { changeSelectedDate } from '../navigation/fixturesNavigationAction';
 import Loading from '../../generic/loading/Loading';
 import Info from '../../generic/info/Info';
+import moment from 'moment';
 
 class FixtureCompetitionListContainer extends Component {
+	constructor({ match }) {
+		super();
+
+		this.match = match;
+	}
+
 	componentDidMount() {
-		this.props.fetchCompetitions();
+		const date = this.match.params.date;
+		const formattedDate = date ? moment(date, 'YYYYMMDD') : moment();
+
+		this.props.changeSelectedDate(formattedDate);
 	}
 
 	render() {
@@ -41,7 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchCompetitions: () => dispatch(fetchCompetitions())
+		changeSelectedDate: (date) => dispatch(changeSelectedDate(date))
 	};
 };
 

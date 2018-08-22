@@ -26,11 +26,15 @@ const getStatus = (status, date) => {
 	}
 };
 
-const FixtureEvent = (prop) => {
-	const { date, homeTeamName, awayTeamName, score, status } = prop.event;
+const FixtureEvent = (props) => {
+	const { id, date, homeTeamName, awayTeamName, score, status } = props.event;
+
+	const handleClick = () => {
+		props.onEventClicked(id);
+	};
 
 	return (
-		<div className="event">
+		<div className="event" onClick={handleClick}>
 			<div className={`event-status ${status === matchStatus.IN_PLAY ? 'inplay' : ''}`}>
 				{getStatus(status, date)}
 			</div>

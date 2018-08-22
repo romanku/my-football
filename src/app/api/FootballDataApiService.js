@@ -91,3 +91,15 @@ function getRequestParams(date) {
 
   return '';
 }
+
+export async function getMatch(id, onSuccess, onError) {
+  try {
+    const matchUrl = `${url.FIXTURES}/${id}`;
+    const matchResponse = await fetch(matchUrl, fetchOptions);
+    const matchData = await matchResponse.json();
+
+    onSuccess(matchData);
+  } catch (err) {
+    onError();
+  }
+}

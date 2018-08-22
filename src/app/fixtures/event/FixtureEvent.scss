@@ -10,6 +10,11 @@
     padding-left: 10px;
     padding-right: 10px;
 
+    &:hover {
+        cursor: pointer;
+        background-color: #cccccc;
+    }
+
     &-status {
         min-width: 60px;
         margin-right: 5px;

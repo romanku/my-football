@@ -10,9 +10,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
   },
-  optimization: {
-    minimize: false
-  },
+  devtool: 'source-map',
 
   plugins: [
     new CleanWebpackPlugin(['build/*']),
